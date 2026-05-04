@@ -8,6 +8,11 @@
   </head>
   <body>
     <header>
+      <div class="auth-controls">
+        <button id="auth-button" type="button">Practice Lead Login</button>
+        <button id="logout-button" type="button" class="hidden">Logout</button>
+        <span id="user-badge" class="hidden"></span>
+      </div>
       <div class="header-content">
         <img src="./.images/byte-teacher.png" alt="Byte mascot" class="mascot" />
         <div class="header-text">
@@ -52,6 +57,26 @@
         <p>&copy; 2025 Slalom • Building Better Tomorrow</p>
       </div>
     </footer>
+
+    <div id="login-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Practice Lead Sign In</h3>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required placeholder="practice.lead" />
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" required placeholder="Enter password" />
+          </div>
+          <div class="modal-actions">
+            <button type="submit">Sign In</button>
+            <button type="button" id="cancel-login" class="secondary-btn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <script src="app.js"></script>
   </body>
