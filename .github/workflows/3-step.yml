@@ -80,9 +80,21 @@ jobs:
 
           # If no valid changes found, comment and exit
           if ! $has_valid_changes; then
-            gh issue comment "$ISSUE_URL" \
-              --body "$COMMENT_BODY" \
-              --edit-last
+            retry() {
+              local n=0 max=5 delay=5
+              until "$@"; do
+                n=$((n+1))
+                if [ "$n" -ge "$max" ]; then
+                  return 1
+                fi
+                sleep $((delay * n))
+              done
+            }
+        
+            if ! retry gh issue comment "$ISSUE_URL" --body "$COMMENT_BODY" --edit-last; then
+              echo "Warning: failed to update issue comment (transient GitHub error)."
+            fi
+
             exit 1
           fi
 
