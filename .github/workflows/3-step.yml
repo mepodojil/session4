@@ -188,8 +188,30 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Disable current workflow and enable next one
+        shell: bash
         run: |
-          gh workflow disable "Step 3"
-          gh workflow enable "Step 4"
+          set -euo pipefail
+
+          retry() {
+            local n=0
+            local max=5
+            local delay=5
+            until "$@"; do
+              n=$((n+1))
+              if [ "$n" -ge "$max" ]; then
+                return 1
+              fi
+              sleep $((delay * n))
+            done
+          }
+
+          # Try to disable Step 3, but don't block progress if GitHub returns a transient 5xx
+          if ! retry gh workflow disable "Step 3"; then
+            echo "Warning: failed to disable 'Step 3' after retries (likely transient GitHub API error). Continuing."
+          fi
+
+          # Enabling the next step is the important part for progression
+          retry gh workflow enable "Step 4"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
