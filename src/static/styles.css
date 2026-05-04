@@ -16,6 +16,7 @@ body {
 }
 
 header {
+  position: relative;
   text-align: center;
   padding: 20px 0;
   margin-bottom: 30px;
@@ -23,6 +24,38 @@ header {
   color: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.auth-controls {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.auth-controls button {
+  border: 1px solid #ffffff;
+  background: transparent;
+  color: #ffffff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.auth-controls button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+#user-badge {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 6px 10px;
+  border-radius: 14px;
+  font-size: 12px;
 }
 
 .header-content {
@@ -173,6 +206,68 @@ section h3 {
   border-radius: 6px;
 }
 
+.pending-section {
+  margin-top: 16px;
+  border-top: 1px dashed #ff9800;
+  padding-top: 12px;
+}
+
+.pending-section h5 {
+  margin-bottom: 8px;
+  color: #b75a00;
+}
+
+.pending-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.pending-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 6px;
+  padding: 10px;
+  background: rgba(255, 152, 0, 0.08);
+  border-radius: 6px;
+}
+
+.pending-meta {
+  margin: 0;
+  font-size: 12px;
+  color: #666;
+}
+
+.pending-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.approve-btn,
+.reject-btn {
+  border: none;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.approve-btn {
+  background: #2e7d32;
+  color: #ffffff;
+}
+
+.reject-btn {
+  background: #c62828;
+  color: #ffffff;
+}
+
+.approve-btn:hover,
+.reject-btn:hover {
+  opacity: 0.9;
+}
+
 .form-group {
   margin-bottom: 15px;
 }
@@ -240,6 +335,45 @@ button[type="submit"]:hover {
   display: none;
 }
 
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  width: min(92vw, 420px);
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.modal-content h3 {
+  margin-bottom: 12px;
+  color: #003d7a;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.secondary-btn {
+  background: #f0f3f8 !important;
+  color: #003d7a !important;
+  border: 1px solid #b0c4de !important;
+}
+
 footer {
   text-align: center;
   margin-top: 30px;
@@ -287,6 +421,12 @@ footer {
 
 /* Responsive design improvements */
 @media (max-width: 768px) {
+  .auth-controls {
+    position: static;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
   .header-content {
     flex-direction: column;
     gap: 10px;

@@ -1,0 +1,18 @@
+{
+  "practice_leads": [
+    {
+      "username": "practice.lead",
+      "password_hash": "361b72622a4a768c8f0ec92a7aa54728f70be8dffa05140bb2374ce99b6f1b46",
+      "salt": "slalom-lead-salt",
+      "role": "practice_lead",
+      "practice_areas": ["Technology", "Strategy", "Operations"]
+    },
+    {
+      "username": "tech.lead",
+      "password_hash": "b1e47e15a9ef375df25de36e83e9740e3a5ed715e9252d2105647fe5f675afdb",
+      "salt": "slalom-tech-salt",
+      "role": "practice_lead",
+      "practice_areas": ["Technology"]
+    }
+  ]
+}
